@@ -3,8 +3,35 @@ from questions import questions
 from traits import traits
 from career_profiles import career_profiles
 
+# Import questionnaire data and trait categories from separate files
+from questions import questions
+from traits import traits
+from career_profiles import career_profiles
+
+print(
+    "\n========================================"
+)
+print(
+    "      CAREER RECOMMENDATION SYSTEM"
+)
+print(
+    "========================================\n"
+)
+
+print(
+    "Answer each question honestly."
+)
+print(
+    "There are no right or wrong answers."
+)
+print(
+    "The system will analyze your profile "
+    "and suggest suitable career paths.\n"
+)
+
 # Dictionary to store the user's score for each profile trait
 profile_scores = {}
+
 
 # Initialize all profile scores to 0
 for category in traits:
@@ -25,11 +52,30 @@ for section in questions:
         print(questions[section][q_no]["question"])
 
         # Take user response on a scale of 1 to 5
-        score = int(input(
-            "Enter your response from 1 to 5 "
-            "(1=Strongly Disagree, 2=Disagree, "
-            "3=Neutral, 4=Agree, 5=Strongly Agree): "
-        ))
+        while True:
+            try:
+                score = int(input(
+                    "Enter your response from 1 to 5 "
+                    "(1=Strongly Disagree, "
+                    "2=Disagree, "
+                    "3=Neutral, "
+                    "4=Agree, "
+                    "5=Strongly Agree): "
+                ))
+
+                if 1 <= score <= 5:
+                    break
+
+                print(
+                    "Invalid input. "
+                    "Please enter a number from 1 to 5."
+                )
+
+            except ValueError:
+                print(
+                    "Invalid input. "
+                    "Please enter a number from 1 to 5."
+                )
 
         # Add the selected score to all traits mapped to the question
         for trait in questions[section][q_no]["traits"]:
@@ -92,6 +138,15 @@ for category in traits:
 
     print()
 
+print(
+    "\n========================================"
+)
+print(
+    " QUESTIONNAIRE COMPLETED"
+)
+print(
+    "========================================"
+)
 
 # Ask user what they are primarily considering
 
