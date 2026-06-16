@@ -3,11 +3,6 @@ from questions import questions
 from traits import traits
 from career_profiles import career_profiles
 
-# Import questionnaire data and trait categories from separate files
-from questions import questions
-from traits import traits
-from career_profiles import career_profiles
-
 print(
     "\n========================================"
 )
