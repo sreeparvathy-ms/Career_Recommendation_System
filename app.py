@@ -106,22 +106,44 @@ else:
     "1 = Strongly Disagree | 2 = Disagree | 3 = Neutral | 4 = Agree | 5 = Strongly Agree"
 )
 
+            saved_response = (
+                st.session_state.responses.get(
+                    current_question["q_no"],
+                    3
+    )
+)
+
             response = st.radio(
                 current_question["question"],
                 [1, 2, 3, 4, 5],
+                index=[1, 2, 3, 4, 5].index(saved_response),
                 horizontal=True,
                 key=f"q_{current_index}"
-            )
+)
 
-            if st.button("Next"):
+            col1, col2 = st.columns(2)
 
-                st.session_state.responses[
-                    current_question["q_no"]
-                ] = response
+            with col1:
 
-                st.session_state.question_index += 1
+                if current_index > 0:
 
-                st.rerun()
+                    if st.button("⬅ Previous"):
+
+                        st.session_state.question_index -= 1
+
+                        st.rerun()
+
+            with col2:
+
+                if st.button("Next ➡"):
+
+                    st.session_state.responses[
+                        current_question["q_no"]
+                    ] = response
+
+                    st.session_state.question_index += 1
+
+                    st.rerun()
 
         else:
 
